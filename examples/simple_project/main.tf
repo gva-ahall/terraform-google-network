@@ -24,8 +24,8 @@ provider "null" {
 
 locals {
   subnet_01 = "${var.network_name}-subnet-01"
-  subnet_02 = "${var.network_name}-subnet-02"
-  subnet_03 = "${var.network_name}-subnet-03"
+#  subnet_02 = "${var.network_name}-subnet-02"
+#  subnet_03 = "${var.network_name}-subnet-03"
 }
 
 module "test-vpc-module" {
@@ -36,9 +36,10 @@ module "test-vpc-module" {
   subnets = [
     {
       subnet_name   = "${local.subnet_01}"
-      subnet_ip     = "10.10.10.0/24"
-      subnet_region = "us-west1"
-    },
+      subnet_ip     = "192.168.1.0/24"
+      subnet_region = "europe-west2"
+      subnet_private_access = "true"
+    }/*,
     {
       subnet_name           = "${local.subnet_02}"
       subnet_ip             = "10.10.20.0/24"
@@ -54,6 +55,6 @@ module "test-vpc-module" {
       subnet_flow_logs_interval = "INTERVAL_10_MIN"
       subnet_flow_logs_sampling = 0.7
       subnet_flow_logs_metadata = "INCLUDE_ALL_METADATA"
-    }
+*/    }
   ]
 }
